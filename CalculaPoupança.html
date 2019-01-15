@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript">
+		function calculoRendimento(porcentagem) {
+            console.log("Entrou");
+			var salario = document.getElementById('salario').value; //pega o salário
+			var objetivo = document.getElementById('rendimento estimado').value; // pega o objetivo
+            var poupanca= porcentagem*salario/100; //guarda a parte do salário
+			var tempo = Math.round(objetivo/poupanca); //calcula o tempo
+			document.getElementById('tempo').innerHTML=tempo; //retorna o tempo
+			document.getElementById('porcentagemSalario').innerHTML=porcentagem+"%"; //retorna a porcentagem
+		} 
+        function atualizaSlider () {
+            document.getElementById("myRange").step = "5";
+            var percentualSlider = document.getElementById('myRange').value;
+            console.log(percentualSlider); 
+            document.getElementById('derekTeAmo').innerHTML= percentualSlider+"%";
+            calculoRendimento(percentualSlider);
+            analisaPerfil(percentualSlider);
+        }
+        
+        function analisaPerfil (porcentagem) {
+            var textoPerfil;
+            if (porcentagem <= 15) {
+                textoPerfil = "calmo";
+            } else if (porcentagem <= 30) {
+                textoPerfil = "médio";
+            } else {
+                textoPerfil = "agressivo";
+            }
+            document.getElementById("analisaPerfil").innerHTML = "Você se enquadra em um perfil mais " + textoPerfil;
+        }    
+	</script>
+ 	</head>	
+ 	<body>
+ 			
+            <div class="Título">
+ 				<h1>Calculadora de Poupança</h1>
+ 			</div>
+ 			<div class="salario">
+ 				<label for="salario">Digite aqui seu salário: </label>
+ 				<input type="text" id="salario" value ="" placeholder="Exemplo: 1500">
+ 			</div>
+ 			
+ 			<div class="rendimento estimado">
+ 				<label for="rendimento estimado"> Quanto deseja juntar?</label>
+ 				<input type="text" id="rendimento estimado" value="" placeholder="Exemplo: 10000">
+			</div>
+            <div class="slidecontainer">
+                <input type="range" min="5" max="50" value="15" class="slider" id="myRange" onchange="atualizaSlider()">
+                <label> Percentual da poupança: </label> 
+                <span id="derekTeAmo"></span>
+            </div>
+			<div class="resultado">
+				<p>tempo estimado: </p>
+				<p id="tempo"></p>
+				<p>porcentagem do salário poupada: </p>
+				<p id="porcentagemSalario"></p>
+                <p id="analisaPerfil"></p>
+			</div>
+            
+	</body>
